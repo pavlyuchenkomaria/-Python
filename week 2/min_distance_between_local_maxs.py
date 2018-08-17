@@ -18,3 +18,4 @@ if __name__ == '__main__':
             local_max2 = local_max2
         n = n2
     print(local_max1, local_max2)
+#task is not ready
