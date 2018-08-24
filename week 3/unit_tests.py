@@ -2,14 +2,6 @@ import unittest
 from math import sqrt
 
 
-def my_sum(a, b):
-    return a + b
-
-class SumTests(unittest.TestCase):
-    def test_add(self):
-        self.assertEqual(my_sum(1, 2), 3)
-
-
 def solver(a, b, c):
     if b == 0 and c == 0:
         return [0]
@@ -23,12 +15,7 @@ def solver(a, b, c):
         return [x]
 
 
-if __name__ == '__main__':
-    # unittest.main()
-    a = float(input())
-    b = float(input())
-    c = float(input())
-
+def format_solution(a, b, c):
     solution = solver(a, b, c)
     if len(solution) == 0:
         raise SystemExit
@@ -38,7 +25,7 @@ if __name__ == '__main__':
             x = int(x)
         else:
             x = '{0:.6f}'.format(-b / (2 * a))
-        print(x)
+        return str(x)
     elif len(solution) == 2:
         x1 = solution[0]
         x2 = solution[1]
@@ -51,8 +38,25 @@ if __name__ == '__main__':
         else:
             x2 = '{0:.5f}'.format(x2)
         if x1 > x2:
-            print(x2, x1)
+            return str(x2) + ", " + str(x1)
         elif x1 < x2:
-            print(x1, x2)
+            return str(x1) + ", " + str(x2)
     else:
         raise SystemExit
+
+
+class SolverTests(unittest.TestCase):
+    def test_solver(self):
+        self.assertEqual(solver(2, 0, 0), [0])
+        self.assertEqual(format_solution(1, -1, -2), '-1, 2')
+        self.assertEqual(format_solution(1, -7.5, 3), '0.423966, 7.07603')
+        self.assertEqual(format_solution(1, 2, 1), '-1')
+
+
+if __name__ == '__main__':
+    unittest.main()
+    a = float(input())
+    b = float(input())
+    c = float(input())
+
+    print(format_solution(a, b, c))
