@@ -51,7 +51,7 @@ class SolverTests(unittest.TestCase):
         self.assertEqual(format_solution(1, -1, -2), '-1, 2')
         self.assertEqual(format_solution(1, -7.5, 3), '0.423966, 7.07603')
         self.assertEqual(format_solution(1, 2, 1), '-1')
-
+#  это unit test - тест на проверку конкретной функции или класса функций
 
 if __name__ == '__main__':
     unittest.main()
