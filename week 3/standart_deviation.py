@@ -2,20 +2,15 @@ from math import sqrt
 
 if __name__ == '__main__':
     x = int(input())
-    S = x
-    n = 0
-    list_of_x = [x]
+    list_of_x = []
     while x != 0:
+        list_of_x.append(x)
         x = int(input())
-        if x != 0:
-            list_of_x.append(x)
-        S += x
-        n += 1
-    s = S / n
+    s = sum(list_of_x) / len(list_of_x)
     sum_of_subtractions = 0
     for x in list_of_x:
         sum_of_subtractions += (x - s) ** 2
-    deviation = sqrt(sum_of_subtractions / (n - 1))
+    deviation = sqrt(sum_of_subtractions / (len(list_of_x) - 1))
     if deviation.is_integer():
         standart_deviation = deviation
     else:
