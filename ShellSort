@@ -1,0 +1,53 @@
+
+#include "pch.h"
+#include <iostream>
+#include <conio.h>
+#include <string>
+using namespace std;
+
+void Shell_can_sort_this(int *a, int n)
+{
+	for (int step = n / 2; step >= 1; step /= 2) // идем по шагам 
+	{
+		int ministep = 0; // на каждом шаге у нас идут минисдвиги на 1
+		// то есть внутри интервала (шага) мы проходим по каждому элементу
+		// и сравниваем его с соответ. элементом в следующем интервале (шаге)
+		for (int s = step; ministep < s; ministep++)
+			//на каждом шаге происходит сортировка прямой вставкой
+		{
+			for (int j = ministep + s; j < n; j += s)
+			{
+				int x = a[j]; // х - это то число, с которым мы сравниваем
+				int k = j - s;
+				while (k >= 0 && a[k] > x)
+				{
+					a[k + s] = a[k];
+					k -= s;
+				}
+				a[k + s] = x;
+			}
+		}
+	}
+}
+
+void main()
+{
+	int *a, n;
+
+	cout << "enter n" << endl;
+	cin >> n;
+	a = new int[n];
+
+	cout << "enter " << n << " elements: ";
+	for (int i = 0; i < n; i++)
+		cin >> a[i];
+
+	Shell_can_sort_this(a, n);
+
+	cout << "result of Shell's sorting: ";
+	for (int i = 0; i < n; i++)
+		cout << a[i] << ' ';
+
+	delete[] a;
+	_getch();
+}
